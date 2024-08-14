@@ -1,3 +1,9 @@
+@extends('layouts.index')
+
+@section('title', 'Inicio')
+
+@section('content')
+
 <h1> States </h1>
 
 <table>
@@ -22,3 +28,5 @@
         @endforeach
     </tbody>
 </table>
+
+@endsection

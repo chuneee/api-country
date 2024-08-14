@@ -17,18 +17,23 @@ Route::put('/countries/{id}', [CountryController::class, 'update']);
 Route::delete('/countries/{id}', [CountryController::class, 'delete']);
 
 // APIS CITIES 
-Route::get('/cities', [CityController::class, 'index']);
+Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
 Route::get('/cities/{id}', [CityController::class, 'item'])->name('cities.item');
-Route::post('/cities', [CityController::class, 'create']);
-Route::put('/cities/{id}', [CityController::class, 'update']);
-Route::delete('/cities/{id}', [CityController::class, 'delete']);
+Route::get('/cities/edit/{id}', [CityController::class, 'edit'])->name('cities.edit');
+Route::get('/cities/create', [CityController::class, 'create'])->name('cities.create');
+Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
+Route::put('/cities/{id}', [CityController::class, 'update'])->name('cities.update');
+Route::delete('/cities/{id}', [CityController::class, 'delete'])->name('cities.delete');
+
 
 // APIS STATES 
-Route::get('/states', [StatesController::class, 'index']);
+Route::get('/states', [StatesController::class, 'index'])->name('states.index');
 Route::get('/states/{id}', [StatesController::class, 'item'])->name('states.item');
-Route::post('/states', [StatesController::class, 'create']);
-Route::put('/states/{id}', [StatesController::class, 'update']);
-Route::delete('/states/{id}', [StatesController::class, 'delete']);
+Route::get('/states/edit/{id}', [StatesController::class, 'edit'])->name('states.edit');
+Route::post('/states', [StatesController::class, 'create'])->name('states.create');
+Route::post('/states', [StatesController::class, 'store'])->name('states.store');
+Route::put('/states/{id}', [StatesController::class, 'update'])->name('states.update');
+Route::delete('/states/{id}', [StatesController::class, 'delete'])->name('states.delete');
 
 
 
