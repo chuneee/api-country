@@ -30,14 +30,21 @@
             <td>{{ $city->name }}</td>
             <td>{{ $city->state_id }}</td>
             <td>
-                <a href="{{ route('cities.item', $city->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                <button data-id="{{ $city->id }}" data-name="{{ $city->name }}" data-state-id="{{ $city->state_id }}" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-success btn-sm" onclick="openEditModal(this)">Editar</button>
-                <button data-id="{{ $city->id }}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="openDeleteModal(this)">Eliminar</button>
+            <a href="#" class="btn btn-primary btn-sm" data-name="{{ $city->name }}" data-state-id="{{ $city->state_id }}" data-bs-toggle="modal" data-bs-target="#viewModal" onclick="openViewModal(this)">Ver</a>
+            <button data-id="{{ $city->id }}" data-name="{{ $city->name }}" data-state-id="{{ $city->state_id }}" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-success btn-sm" onclick="openEditModal(this)">Editar</button>
+            <button data-id="{{ $city->id }}" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="openDeleteModal(this)">Eliminar</button>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+
+<div class="row mt-3">
+    <div class="col text-center"> 
+        {!! $cities->withQueryString()->links('pagination::bootstrap-5') !!}
+    </div>
+</div>
+
 @endsection
 
 <!-- Modal Agregar Ciudad -->
@@ -122,6 +129,35 @@
         </div>
     </div>
 </div>
+
+<!-- Modal para ver la ciudad -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel">Detalles de la Ciudad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Nombre:</strong> <span id="viewCityName"></span></p>
+                <p><strong>Estado ID:</strong> <span id="viewStateId"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openViewModal(button) {
+    const name = button.getAttribute('data-name');
+    const stateId = button.getAttribute('data-state-id');
+
+    document.getElementById('viewCityName').textContent = name;
+    document.getElementById('viewStateId').textContent = stateId;
+}
+</script>
 
 <script>
 function openEditModal(button) {
