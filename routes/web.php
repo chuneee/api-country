@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\DataImportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -37,7 +38,9 @@ Route::post('/states', [StatesController::class, 'store'])->name('states.store')
 Route::put('/states/{id}', [StatesController::class, 'update'])->name('states.update');
 Route::delete('/states/{id}', [StatesController::class, 'delete'])->name('states.delete');
 
-
+// API UPLOAD INSERTS
+Route::get('/upload', [DataImportController::class, 'index'])->name('upload.index');
+Route::post('/upload-inserts', [DataImportController::class, 'uploadInserts'])->name('upload.inserts');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();    
